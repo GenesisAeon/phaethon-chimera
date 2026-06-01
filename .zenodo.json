@@ -1,0 +1,53 @@
+{
+  "title": "phaethon-chimera: Frustrated UTAC Systems & Chimera States (GenesisAeon Package 35)",
+  "description": "GenesisAeon Package 35 — UTAC modelling of asteroid 3200 Phaethon as a frustrated chimera system. Implements: FrustratedUTAC ODE (dH/dt = r·H·(1-H/K)·tanh(σΓ) + A·cos(ω_p·t)), Kuramoto-order-parameter chimera detector, SOC avalanche statistics (τ ≈ 1.3), stochastic dust emission model (P_emit ≈ 0.23 per orbit), and 47 quantitative predictions for the DESTINY+ JAXA mission (flyby 2029). CREP coupling: Γ_phaethon ≈ 0.165 — between Amazon (0.116) and AMOC (0.251). Connects to P31 (v_RIG), P32 (β-clustering), P36 (S_A/S_V duality), P38 (Φ^{1/3} scaling).",
+  "version": "1.0.0",
+  "license": "MIT",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Römer, Johann",
+      "affiliation": "MOR Research Collective",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "phaethon",
+    "asteroid-dynamics",
+    "chimera-state",
+    "frustrated-systems",
+    "UTAC",
+    "CREP",
+    "self-organised-criticality",
+    "DESTINY+",
+    "Geminids",
+    "complex-systems",
+    "GenesisAeon",
+    "orbital-mechanics",
+    "solar-system",
+    "power-law",
+    "Kuramoto"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isPartOf",
+      "identifier": "10.5281/zenodo.17472834",
+      "scheme": "doi"
+    },
+    {
+      "relation": "isDocumentedBy",
+      "identifier": "10.5281/zenodo.19645351",
+      "scheme": "doi"
+    },
+    {
+      "relation": "isCitedBy",
+      "identifier": "10.5281/zenodo.17472834",
+      "scheme": "doi"
+    }
+  ],
+  "communities": [
+    { "identifier": "genesisaeon" }
+  ],
+  "language": "eng",
+  "access_right": "open"
+}
