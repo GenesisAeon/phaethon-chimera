@@ -37,6 +37,10 @@ dev = [
     "pytest-cov>=5.0.0",
     "pre-commit>=3.7.0",
 ]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+]
 notebooks = [
     "jupyter>=1.0.0",
     "matplotlib>=3.8.0",
@@ -84,6 +88,11 @@ strict = true
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# typer app.command() decorators are untyped — suppress for CLI modules
+module = ["phaethon_chimera.cli", "diamond_setup.cli"]
+ignore_errors = true
 
 [dependency-groups]
 dev = [

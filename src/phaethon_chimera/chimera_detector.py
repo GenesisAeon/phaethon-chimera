@@ -33,14 +33,12 @@ class ChimeraDetector:
     @staticmethod
     def _instantaneous_phase(H: NDArray[np.float64]) -> NDArray[np.float64]:
         """Estimate phase via analytic signal (Hilbert transform approximation)."""
-        # Simple zero-crossing phase for single-frequency signal
-        H_centered = H - H.mean()
-        phase = np.unwrap(np.arctan2(
-            np.imag(np.fft.ifft(
-                -1j * np.sign(np.fft.fftfreq(len(H))) * np.fft.fft(H_centered)
-            )).real,
-            H_centered,
-        ))
+        H_centered: NDArray[np.float64] = H - H.mean()
+        freqs: NDArray[np.float64] = np.fft.fftfreq(len(H)).astype(np.float64)
+        analytic_imag: NDArray[np.float64] = np.fft.ifft(
+            -1j * np.sign(freqs) * np.fft.fft(H_centered)
+        ).real.astype(np.float64)
+        phase: NDArray[np.float64] = np.unwrap(np.arctan2(analytic_imag, H_centered))
         return phase
 
     # ── Order parameter ─────────────────────────────────────────────────────
