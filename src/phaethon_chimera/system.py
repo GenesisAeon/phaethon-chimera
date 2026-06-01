@@ -13,8 +13,8 @@ from phaethon_chimera.constants import (
     DESTINY_FLYBY_YEAR,
     GAMMA_PHAETHON,
     PACKAGE_NUMBER,
-    PHI_CUBEROOT,
     PHAETHON_PERIOD_DAYS,
+    PHI_CUBEROOT,
     ZENODO_DOI,
 )
 from phaethon_chimera.destiny_predictions import DESTINY_PREDICTIONS, Prediction

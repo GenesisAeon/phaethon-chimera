@@ -5,9 +5,6 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-import numpy as np
-from numpy.typing import NDArray
-
 from phaethon_chimera.constants import EMISSION_PROBABILITY, PHAETHON_PERIOD_DAYS
 
 

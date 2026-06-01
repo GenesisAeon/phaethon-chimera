@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
@@ -62,7 +62,9 @@ class DustEmissionModel:
         crep_factor = math.tanh(2.2 * self.gamma)
         return crep_factor * (r_peri / radius_au) ** 2
 
-    def emission_per_orbit(self, orbit: int, radius_au: float = PHAETHON_PERIHELION_AU) -> DustEmissionEvent:
+    def emission_per_orbit(
+        self, orbit: int, radius_au: float = PHAETHON_PERIHELION_AU
+    ) -> DustEmissionEvent:
         """Stochastic emission decision for one perihelion passage."""
         triggered = self._rng.random() < self.emit_probability
         flux = self.peak_flux(radius_au) if triggered else 0.0

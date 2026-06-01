@@ -1,88 +1,64 @@
-# CLI Reference
+# CLI Reference — phaethon
 
-## `diamond scaffold`
+## `phaethon run`
 
-Create a new project from a template.
+Run a full Phaethon-Chimera simulation cycle.
 
 ```
-Usage: diamond scaffold [OPTIONS] PROJECT_NAME
-
-Arguments:
-  PROJECT_NAME  Name of the new project (kebab-case recommended)
+Usage: phaethon run [OPTIONS]
 
 Options:
-  -t, --template TEXT       Template to use [default: minimal]
-  -o, --output-dir PATH     Parent directory for the new project
-  --author TEXT             Author name
-  --description TEXT        Short project description
-  --python-version TEXT     Minimum Python version (e.g. 3.11)
-  --dry-run                 Preview files without writing them
+  -n, --n-orbits INTEGER         Number of orbits to simulate [default: 10]
+  --destiny-predictions          Print all 47 DESTINY+ predictions after run
+  --json                         Output results as JSON (machine-readable)
 ```
 
 **Examples**
 
 ```bash
-# Minimal project in the current directory
-diamond scaffold my-lib
+# Standard run
+phaethon run --n-orbits 10
 
-# Genesis preset with custom author
-diamond scaffold my-physics-tool --template genesis --author "Ada Lovelace"
+# With all 47 predictions printed
+phaethon run --n-orbits 10 --destiny-predictions
 
-# Preview what would be created
-diamond scaffold my-lib --dry-run
-
-# Output to a specific directory
-diamond scaffold my-lib --output-dir ~/projects
+# Machine-readable JSON output
+phaethon run --json
 ```
 
 ---
 
-## `diamond list-templates`
+## `phaethon chimera-state`
 
-List all available templates with their descriptions.
+Detect and report the chimera state from a simulation.
+
+```
+Usage: phaethon chimera-state [OPTIONS]
+
+Options:
+  --n-orbits INTEGER   Number of orbits [default: 10]
+  --threshold FLOAT    R threshold for chimera classification [default: 0.5]
+```
 
 ```bash
-diamond list-templates
+phaethon chimera-state
+# → Order parameter R = 0.4823  → chimera
 ```
 
 ---
 
-## `diamond validate`
+## `phaethon destiny-report`
 
-Validate a project directory against diamond-setup best practices.
+Print all 47 DESTINY+ mission predictions.
 
 ```
-Usage: diamond validate [PATH]
+Usage: phaethon destiny-report [OPTIONS]
 
-Arguments:
-  PATH  Project directory to validate [default: current directory]
+Options:
+  --format TEXT   Output format: table | json  [default: table]
 ```
-
-Checks performed:
-
-| Check | Level |
-|-------|-------|
-| `pyproject.toml` present | **Error** |
-| `src/` layout present | Warning |
-| `tests/` directory present | Warning |
-| `.github/workflows/` present | Warning |
-| `README.md` present | Warning |
-| `.gitignore` present | Warning |
 
 ```bash
-# Validate the current directory
-diamond validate
-
-# Validate a specific project
-diamond validate path/to/my-project
-```
-
----
-
-## `diamond version`
-
-Print the installed version.
-
-```bash
-diamond version
+phaethon destiny-report
+phaethon destiny-report --format json
 ```

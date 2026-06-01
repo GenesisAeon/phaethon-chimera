@@ -9,8 +9,8 @@ from phaethon_chimera.constants import (
     PHAETHON_APHELION_AU,
     PHAETHON_ECCENTRICITY,
     PHAETHON_INCLINATION_DEG,
-    PHAETHON_PERIOD_DAYS,
     PHAETHON_PERIHELION_AU,
+    PHAETHON_PERIOD_DAYS,
 )
 
 
@@ -89,9 +89,9 @@ class PhaethonOrbit:
     def is_near_perihelion(self, t: float, window_days: float = 5.0) -> bool:
         """True if within window_days of a perihelion passage."""
         M = self.mean_anomaly(t)
-        return M < self._angular_freq_rad_per_day * window_days or M > (
+        return self._angular_freq_rad_per_day * window_days > M or (
             2 * math.pi - self._angular_freq_rad_per_day * window_days
-        )
+        ) < M
 
     def state_at(self, t: float) -> OrbitalState:
         nu = self.true_anomaly(t)

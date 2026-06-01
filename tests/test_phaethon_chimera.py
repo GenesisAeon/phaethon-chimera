@@ -5,10 +5,8 @@ from __future__ import annotations
 import math
 
 import numpy as np
-import pytest
 
 from phaethon_chimera.constants import (
-    CHIMERA_R_PERIHELION,
     EMISSION_PROBABILITY,
     GAMMA_PHAETHON,
     PHI,
@@ -24,7 +22,6 @@ from phaethon_chimera.orbital import PhaethonOrbit
 from phaethon_chimera.soc_phaethon import SOCPhaethon
 from phaethon_chimera.system import PhaethonChimera
 
-
 # ── Constants ────────────────────────────────────────────────────────────────
 
 def test_phi_cuberoot():
@@ -32,7 +29,6 @@ def test_phi_cuberoot():
 
 
 def test_phi_cuberoot_value():
-    import math
     assert abs(PHI_CUBEROOT - ((1 + math.sqrt(5)) / 2) ** (1 / 3)) < 1e-10
 
 

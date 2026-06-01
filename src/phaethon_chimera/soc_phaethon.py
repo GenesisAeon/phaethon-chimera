@@ -28,7 +28,9 @@ class SOCPhaethon:
 
     # ── Power-law fit ────────────────────────────────────────────────────────
 
-    def fit_powerlaw(self, data: NDArray[np.float64], s_min: float | None = None) -> dict[str, float]:
+    def fit_powerlaw(
+        self, data: NDArray[np.float64], s_min: float | None = None
+    ) -> dict[str, float]:
         """
         Fit power-law exponent via MLE Hill estimator.
 
@@ -38,7 +40,12 @@ class SOCPhaethon:
         data_filtered = data[data >= s_min]
         n = len(data_filtered)
         if n < 5:
-            return {"tau_hat": float("nan"), "ci_low": float("nan"), "ci_high": float("nan"), "p_ks": 0.0}
+            return {
+                "tau_hat": float("nan"),
+                "ci_low": float("nan"),
+                "ci_high": float("nan"),
+                "p_ks": 0.0,
+            }
 
         tau_hat = 1 + n / np.sum(np.log(data_filtered / s_min))
 

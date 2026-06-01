@@ -6,9 +6,11 @@ from dataclasses import dataclass
 from typing import Any
 
 from phaethon_chimera.constants import (
+    CHIMERA_ALTITUDE_KM,
     CHIMERA_R_PERIHELION,
     EMISSION_PROBABILITY,
     GAMMA_PHAETHON,
+    PHI_CUBEROOT,
     SOC_TAU_EXPONENT,
 )
 
@@ -19,10 +21,38 @@ BENCHMARK_TARGETS: dict[str, tuple[float, float | None]] = {
     "emission_probability":    (EMISSION_PROBABILITY, 0.08),
     "geminid_zhr":             (120.0, 30.0),
     "n_destiny_predictions":   (47.0, 0.0),
-    "phi_cuberoot":            (1.17480502, 0.00001),
+    "phi_cuberoot":            (PHI_CUBEROOT, 1e-8),
     "hurst_exponent_min":      (0.5, None),  # H > 0.5 for SOC
-    "chimera_altitude_km":     (2.3, 0.4),
+    "chimera_altitude_km":     (CHIMERA_ALTITUDE_KM, 0.4),
 }
+
+# Mapping: BENCHMARK_TARGETS key -> path in run_cycle() output
+# Nested values are addressed with dot notation: "parent.child"
+_KEY_PATH: dict[str, str] = {
+    "gamma_phaethon":         "gamma_phaethon",
+    "chimera_R_perihelion":   "chimera.R_perihelion",
+    "soc_tau_exponent":       "soc.tau_hat",
+    "emission_probability":   "dust.empirical_probability",
+    "geminid_zhr":            "geminid.predicted_zhr",
+    "n_destiny_predictions":  "n_destiny_predictions",
+    "phi_cuberoot":           "phi_cuberoot",
+    "hurst_exponent_min":     "soc.hurst_exponent",
+    "chimera_altitude_km":    "chimera_altitude_km",
+}
+
+
+def _extract(results: dict[str, Any], path: str) -> float | None:
+    """Traverse dot-separated path into nested dict. Returns None if missing."""
+    parts = path.split(".")
+    obj: Any = results
+    for part in parts:
+        if not isinstance(obj, dict) or part not in obj:
+            return None
+        obj = obj[part]
+    try:
+        return float(obj)
+    except (TypeError, ValueError):
+        return None
 
 
 @dataclass
@@ -37,10 +67,7 @@ class BenchmarkResult:
 
 def check_target(key: str, actual: float) -> BenchmarkResult:
     target, tol = BENCHMARK_TARGETS[key]
-    if tol is None:
-        passed = actual > target  # e.g. Hurst > 0.5
-    else:
-        passed = abs(actual - target) <= tol
+    passed = actual > target if tol is None else abs(actual - target) <= tol
     return BenchmarkResult(
         key=key,
         target=target,
@@ -52,11 +79,17 @@ def check_target(key: str, actual: float) -> BenchmarkResult:
 
 
 def run_benchmark(results: dict[str, Any]) -> dict[str, BenchmarkResult]:
-    """Run benchmark checks against BENCHMARK_TARGETS."""
+    """
+    Run benchmark checks against BENCHMARK_TARGETS.
+
+    Accepts the direct output of PhaethonChimera.run_cycle() — nested keys
+    (chimera.R_perihelion, soc.tau_hat, etc.) are resolved automatically.
+    """
     checks: dict[str, BenchmarkResult] = {}
-    for key in BENCHMARK_TARGETS:
-        if key in results:
-            checks[key] = check_target(key, float(results[key]))
+    for key, path in _KEY_PATH.items():
+        value = _extract(results, path)
+        if value is not None:
+            checks[key] = check_target(key, value)
     return checks
 
 
