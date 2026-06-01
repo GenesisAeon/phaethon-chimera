@@ -1,0 +1,51 @@
+# DESTINY+ Mission Target Configuration
+# JAXA — Deep Space Explorer (DESTINY+)
+# Phaethon flyby: ~2029
+
+mission:
+  name: DESTINY+
+  full_name: "Demonstration and Experiment of Space Technology for INterplanetary voYage Phaethon fLyby and dUst Science"
+  agency: JAXA
+  launch: 2024
+  phaethon_flyby:
+    year: 2029
+    closest_approach_km: 500
+    relative_velocity_km_s: 36.4
+
+instruments:
+  - name: TCAP
+    full: "Telescopic Camera for Phaethon"
+    resolution_m_pixel: 1.0
+    wavelength_nm: [400, 900]
+
+  - name: SMEI
+    full: "Solar and Meteorite Imager"
+    purpose: "dust grain imaging and spectroscopy"
+
+  - name: DESTINY_DDA
+    full: "Dust Detector Array"
+    grain_size_range_m: [1e-6, 1e-1]
+
+genesisaeon_p35_predictions:
+  n_predictions: 47
+  most_critical:
+    - id: 11
+      quantity: emission_probability_per_orbit
+      value: 0.23
+      unit: probability
+    - id: 6
+      quantity: chimera_order_parameter_R_perihelion
+      value: 0.50
+      unit: dimensionless
+    - id: 16
+      quantity: soc_powerlaw_tau
+      value: 1.3
+      unit: dimensionless
+    - id: 7
+      quantity: chimera_transition_altitude_km
+      value: 2.3
+      unit: km
+    - id: 12
+      quantity: peak_dust_flux_Gamma
+      value: 0.68
+      unit: normalised

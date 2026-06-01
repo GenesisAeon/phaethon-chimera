@@ -1,0 +1,40 @@
+# 3200 Phaethon orbital elements (JPL Horizons, Epoch 2024)
+# Source: NASA JPL Small-Body Database
+object:
+  name: "3200 Phaethon"
+  designation: "1983 TB"
+  classification: "Apollo asteroid / Blue B-type"
+  diameter_km: 5.56
+  radius_km: 2.78
+
+orbital_elements:
+  period_days: 523.5
+  period_years: 1.4335
+  semi_major_axis_au: 1.2711
+  perihelion_au: 0.1397
+  aphelion_au: 2.4025
+  eccentricity: 0.8898
+  inclination_deg: 22.258
+  longitude_ascending_node_deg: 265.22
+  argument_of_periapsis_deg: 322.17
+  epoch_jd: 2460000.5
+
+physical:
+  albedo_geometric: 0.11
+  rotation_period_hours: 3.604
+  spectral_type: "B"
+  bulk_density_kg_m3: 1700.0
+  thermal_inertia_J_m2_K_s05: 600.0
+
+mission:
+  DESTINY_plus:
+    agency: JAXA
+    launch_year: 2024
+    flyby_year: 2029
+    flyby_distance_km: 500
+
+references:
+  - "Hanus et al. 2016 (shape model)"
+  - "Taylor et al. 2019 (radar)"
+  - "Devogele et al. 2020 (spectroscopy)"
+  - "Jewitt & Li 2010 (STEREO activity)"
