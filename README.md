@@ -41,6 +41,12 @@ Phaethon liegt **zwischen Amazon und AMOC** — im mittleren kritischen Bereich.
 
 ---
 
+## Installation
+
+```bash
+pip install phaethon-chimera
+```
+
 ## Quickstart
 
 ```bash
@@ -130,7 +136,9 @@ PACKAGE_REGISTRY[35] = {
 }
 ```
 
-## Zitation
+## Citation
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17472834.svg)](https://doi.org/10.5281/zenodo.17472834)
 
 ```bibtex
 @software{roemer_phaethon_chimera_2026,
@@ -143,6 +151,9 @@ PACKAGE_REGISTRY[35] = {
   note      = {GenesisAeon Package 35, DESTINY+ predictions}
 }
 ```
+
+A new Zenodo DOI version will be assigned automatically on each future
+GitHub Release, once Zenodo–GitHub integration is enabled for this repo.
 
 ## Verbindung zum GenesisAeon-Ökosystem
 
