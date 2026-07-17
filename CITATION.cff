@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "phaethon-chimera"
+version: "1.0.0"
+date-released: "2026-06-17"
+authors:
+  - family-names: Römer
+    given-names: Johann
+    email: joberoemer@gmail.com
+repository-code: "https://github.com/GenesisAeon/phaethon-chimera"
+license: MIT
+abstract: "Phaethon-Asteroid: Frustrierte Systeme & Chimera-Zustände — GenesisAeon Package 35"
+keywords:
+  - GenesisAeon
+  - UTAC
+  - CREP
+  - open-science
+  - phaethon
+  - asteroid
+  - chimera-state
+  - frustrated-systems
