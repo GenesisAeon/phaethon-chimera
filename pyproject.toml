@@ -53,7 +53,7 @@ phaethon = "phaethon_chimera.cli:app"
 [project.urls]
 Homepage = "https://github.com/GenesisAeon/phaethon-chimera"
 Repository = "https://github.com/GenesisAeon/phaethon-chimera"
-Zenodo = "https://doi.org/10.5281/zenodo.17472834"
+Zenodo = "https://doi.org/10.5281/zenodo.20807497"
 Whitepaper = "https://doi.org/10.5281/zenodo.19645351"
 Issues = "https://github.com/GenesisAeon/phaethon-chimera/issues"
 

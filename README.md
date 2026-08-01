@@ -1,7 +1,7 @@
 # phaethon-chimera
 
-[![GenesisAeon Package](https://img.shields.io/badge/GenesisAeon-Package%2035-blueviolet)](https://doi.org/10.5281/zenodo.17472834)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17472834.svg)](https://doi.org/10.5281/zenodo.17472834)
+[![GenesisAeon Package](https://img.shields.io/badge/GenesisAeon-Package%2035-blueviolet)](https://doi.org/10.5281/zenodo.20807497)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20807497.svg)](https://doi.org/10.5281/zenodo.20807497)
 [![Whitepaper](https://img.shields.io/badge/Whitepaper-Zenodo-blue)](https://doi.org/10.5281/zenodo.19645351)
 [![DESTINY+](https://img.shields.io/badge/DESTINY%2B-Flyby%202029-orange)](https://www.isas.jaxa.jp/missions/spacecraft/destiny_plus/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
@@ -131,14 +131,14 @@ PACKAGE_REGISTRY[35] = {
     "class": PhaethonChimera,
     "domain": "asteroid-dynamics",
     "scale": "solar-system",
-    "zenodo": "10.5281/zenodo.17472834",
+    "zenodo": "10.5281/zenodo.20807497",
     "reference": "DESTINY+ 2024+"
 }
 ```
 
 ## Citation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17472834.svg)](https://doi.org/10.5281/zenodo.17472834)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20807497.svg)](https://doi.org/10.5281/zenodo.20807497)
 
 ```bibtex
 @software{roemer_phaethon_chimera_2026,
@@ -146,7 +146,7 @@ PACKAGE_REGISTRY[35] = {
   title     = {phaethon-chimera: Frustrated UTAC Systems \& Chimera States},
   version   = {1.0.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.17472834},
+  doi       = {10.5281/zenodo.20807497},
   year      = {2026},
   note      = {GenesisAeon Package 35, DESTINY+ predictions}
 }

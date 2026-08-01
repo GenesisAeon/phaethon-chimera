@@ -40,7 +40,7 @@ class PhaethonChimera:
       - 47 DESTINY+ quantitative predictions
 
     Reference: DESTINY+ mission (JAXA), flyby 2029.
-    DOI: 10.5281/zenodo.17472834
+    DOI: 10.5281/zenodo.20807497
     """
 
     def __init__(self, n_orbits: int = 10, seed: int = 42) -> None:

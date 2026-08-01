@@ -6,7 +6,7 @@ Phaethon-Asteroid: Frustrierte Systeme & Chimera-Zustände.
 47 quantitative predictions for DESTINY+ mission (JAXA, flyby 2029).
 CREP coupling: Γ_phaethon ≈ 0.165 (between Amazon 0.116 and AMOC 0.251).
 
-DOI: 10.5281/zenodo.17472834
+DOI: 10.5281/zenodo.20807497
 """
 
 from phaethon_chimera.chimera_detector import ChimeraDetector

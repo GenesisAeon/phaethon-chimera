@@ -48,4 +48,4 @@ DESTINY_FLYBY_YEAR: int = 2029
 
 # Package metadata
 PACKAGE_NUMBER: int = 35
-ZENODO_DOI: str = "10.5281/zenodo.17472834"
+ZENODO_DOI: str = "10.5281/zenodo.20807497"
