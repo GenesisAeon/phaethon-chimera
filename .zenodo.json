@@ -31,12 +31,12 @@
   "related_identifiers": [
     {
       "relation": "isPartOf",
-      "identifier": "10.5281/zenodo.17472834",
+      "identifier": "10.5281/zenodo.19645351",
       "scheme": "doi"
     },
     {
       "relation": "isDocumentedBy",
-      "identifier": "10.5281/zenodo.19645351",
+      "identifier": "10.5281/zenodo.20807497",
       "scheme": "doi"
     },
     {
@@ -46,7 +46,9 @@
     }
   ],
   "communities": [
-    { "identifier": "genesisaeon" }
+    {
+      "identifier": "genesisaeon"
+    }
   ],
   "language": "eng",
   "access_right": "open"
