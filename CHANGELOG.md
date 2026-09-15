@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-09-15
+
+### Fixed (real, independently verified errors found during the DESTINY+
+predictions audit — spot-checking predictions citing external sources)
+- **#26 (mean radius)**: was `2.78 km` attributed to "Hanus et al. 2016
+  occultation data". The real Hanus et al. 2016 (A&A 592, A34) result is
+  an effective *diameter* of 5.1±0.2 km from *thermophysical* modelling
+  of infrared data, not an occultation measurement — neither the value
+  nor the method matched. Corrected to `PHAETHON_RADIUS_KM = 2.55 km`
+  (= 5.1/2), citation corrected.
+- **#40 (ejection velocity)**: was hardcoded to `1.2 m/s`, but
+  `GeminidModel.ejection_velocity_ms()` — the package's own escape-
+  velocity function, `v_esc = sqrt(2GM/r)` — was never actually called
+  to produce this value. Running it with its own stated inputs
+  (ρ=1700 kg/m³) gives ≈2.49 m/s at the corrected radius. Corrected the
+  prediction and the function's own docstring, which made the same
+  wrong claim.
+- **#46 (DESTINY+ flyby year)**: was `2029`, an earlier mission plan.
+  JAXA's current public schedule (launch-vehicle change to H3) targets
+  JFY2028 launch / JFY2030 Phaethon flyby. Corrected `DESTINY_FLYBY_YEAR`
+  and propagated to README.md, `.zenodo.json`, `__init__.py`,
+  `system.py`.
+- **`data/ztf_photometry_summary.yaml`**: flagged (not deleted) — this
+  file is never actually loaded by any code, and its `genesisaeon_utac_fit`
+  section's values exactly equal pre-existing ecosystem defaults
+  (σ=2.2, Γ=0.165) rather than being a credible independent fit from
+  2 STEREO detections + 1 ZTF amplitude number.
+
+### Documented (open issue, not force-fixed)
+- **#47 (perihelion passages before flyby)**: `4.0` does not follow
+  arithmetically from `PHAETHON_PERIOD_YEARS` and either flyby year
+  under a simple period-division estimate. Needs real perihelion epoch
+  data (e.g. JPL Horizons) to resolve properly — left as-is with an
+  honest note rather than substituting an unverified number.
+
+Predictions #5-25, #27-35, #38-45 are pure UTAC/Chimera/SOC model
+outputs with no external literature to check against before the 2030
+flyby; left as-is. #36 (Geminid ZHR) and #37 (stream age) were checked
+against real published estimates and are consistent, though their
+"UTAC model" attribution is unverifiable either way. See
+`D:\mandala\crep-utac-afet-formalism\FOLLOWUP_TICKETS.md` for the full
+audit and `destiny_predictions.py` for per-prediction detail.
+
 ## [1.0.2] - 2026-09-15
 
 ### Fixed (documentation/data honesty, no numeric value change)

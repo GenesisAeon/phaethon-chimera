@@ -79,12 +79,21 @@ class GeminidModel:
     def stream_width_au_effective(self) -> float:
         return self.stream.stream_width_au
 
-    def ejection_velocity_ms(self, radius_km: float = 2.78) -> float:
+    def ejection_velocity_ms(self, radius_km: float = 2.55) -> float:
         """
         Ejection velocity at Phaethon's surface escape speed.
-        v_esc = √(2GM/r) ≈ 1.2 m/s for Phaethon's bulk density.
+        v_esc = sqrt(2GM/r) ~= 2.49 m/s for Phaethon's bulk density.
 
-        Prediction: v_eject ≈ 1.2 ± 0.4 m/s (Prediction #40).
+        CORRECTED (2026-09-15, DESTINY+ predictions audit): this docstring
+        and destiny_predictions.py's Prediction #40 both previously
+        claimed ~=1.2 m/s, but this function was never actually called to
+        produce that value -- running it with its own stated inputs
+        (rho=1700 kg/m^3) gives ~=2.49 m/s at the corrected radius (2.55 km,
+        see PHAETHON_RADIUS_KM's own fix) or ~=2.71 m/s at the old,
+        miscited 2.78 km. See destiny_predictions.py Prediction #40 and
+        FOLLOWUP_TICKETS.md for the full finding.
+
+        Prediction: v_eject ≈ 2.49 ± 0.4 m/s (Prediction #40).
         """
         G = 6.674e-11
         rho = 1700.0  # kg/m³ — B-type asteroid typical density

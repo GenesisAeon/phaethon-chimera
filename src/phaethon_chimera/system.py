@@ -39,7 +39,7 @@ class PhaethonChimera:
       - Stochastic dust emission (Bernoulli with SOC avalanche statistics)
       - 47 DESTINY+ quantitative predictions
 
-    Reference: DESTINY+ mission (JAXA), flyby 2029.
+    Reference: DESTINY+ mission (JAXA), flyby 2030.
     DOI: 10.5281/zenodo.20807497
     """
 
@@ -160,7 +160,7 @@ class PhaethonChimera:
                 "GenesisAeon Package 35 — UTAC modelling of 3200 Phaethon as a frustrated "
                 "chimera system. Implements: FrustratedUTAC ODE, ChimeraDetector (Kuramoto R), "
                 "SOC avalanche statistics, stochastic dust emission, and 47 quantitative "
-                "predictions for the DESTINY+ JAXA mission (flyby 2029). "
+                "predictions for the DESTINY+ JAXA mission (flyby 2030). "
                 f"CREP coupling: Γ_phaethon ≈ {GAMMA_PHAETHON} "
                 "(between Amazon 0.116 and AMOC 0.251)."
             ),

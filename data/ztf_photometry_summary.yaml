@@ -22,8 +22,23 @@ activity_detections:
     description: "Dust/Na tail detected at perihelion by STEREO/HI1"
   emission_probability_per_orbit: 0.23  # P35 parameter
 
+# HONESTY NOTE (2026-09-15, DESTINY+ predictions audit): this file is
+# never actually loaded or parsed by any code in this package (verified
+# via grep -- destiny_predictions.py and constants.py hardcode matching
+# literals directly instead). The section below is also not a credible
+# independent "fit": sigma_steepness=2.2 is the same shared, non-derived
+# GenesisAeon ecosystem default already flagged in amoc-utac and
+# beta-clustering-utac (see FOLLOWUP_TICKETS.md), and gamma_crep=0.165
+# is GAMMA_PHAETHON, already documented in constants.py as having "no
+# cited physical derivation." Two STEREO detections (2009, 2012) plus
+# one ZTF amplitude number cannot statistically constrain three UTAC
+# model parameters via a genuine MLE fit -- this reads as the ecosystem
+# defaults chosen first, with this section written afterwards to look
+# like an independent fit result. The real observational data above
+# (rotation period, amplitude, STEREO detection years) appears
+# consistent with published literature and is not in question.
 genesisaeon_utac_fit:
   r_growth_rate: 0.18
   sigma_steepness: 2.2
   gamma_crep: 0.165
-  comment: "Fitted to ZTF amplitude variability and STEREO emission detections"
+  comment: "UNVERIFIED: not a statistically meaningful independent fit -- see honesty note above"

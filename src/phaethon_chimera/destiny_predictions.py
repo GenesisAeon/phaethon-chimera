@@ -1,4 +1,4 @@
-"""47 quantitative predictions for the DESTINY+ mission (JAXA, flyby 2029)."""
+"""47 quantitative predictions for the DESTINY+ mission (JAXA, flyby 2030)."""
 
 from __future__ import annotations
 
@@ -7,8 +7,10 @@ from dataclasses import dataclass
 from phaethon_chimera.constants import (
     CHIMERA_ALTITUDE_KM,
     CHIMERA_R_PERIHELION,
+    DESTINY_FLYBY_YEAR,
     EMISSION_PROBABILITY,
     GAMMA_PHAETHON,
+    PHAETHON_RADIUS_KM,
     SOC_TAU_EXPONENT,
 )
 
@@ -47,7 +49,25 @@ def build_predictions() -> list[Prediction]:
     # own asserted (not independently re-verified here) claim that
     # sigma~=2.2 "emerges from the beta distribution" -- see
     # FOLLOWUP_TICKETS.md for this as a separate, not-yet-audited finding.
-    # Predictions 5-47 were not individually re-audited in this pass.
+    # UPDATE (2026-09-15, full 44-prediction audit): predictions 5-25,
+    # 27-35, 38-45 are pure UTAC/Chimera/SOC/Thermal/Spectral/InfoGeo
+    # *model outputs* with no external literature to check them against
+    # before the 2030 flyby -- they are honestly framed as speculative,
+    # falsifiable predictions and were left as-is. Spot-checking the
+    # predictions that DO cite real external sources (Hanus et al. 2016,
+    # JAXA's own mission schedule, Geminid literature, and this package's
+    # own physics functions) found three real, independently verified
+    # errors, now fixed: #26 (radius: wrong citation + wrong value), #40
+    # (ejection velocity: doesn't match this package's own escape-velocity
+    # formula for its own stated inputs), #46 (flyby year: outdated vs.
+    # JAXA's current public schedule). #47 has a remaining, documented
+    # arithmetic inconsistency that was NOT force-fixed (see its own
+    # note) since resolving it needs precise perihelion-epoch data not
+    # available here. Geminid ZHR (#36) and stream age (#37) were checked
+    # against real published estimates and are consistent, though their
+    # "method" text's claim of being independently produced by the UTAC
+    # model (rather than reverse-fit to known literature values) is
+    # unverifiable either way. See FOLLOWUP_TICKETS.md for the full audit.
     p.append(Prediction(1, "CREP", "Gamma_phaethon", GAMMA_PHAETHON, 0.02, "dimensionless",
                          "No independent derivation -- chosen to sit between "
                          "GAMMA_AMAZON and GAMMA_AMOC in the shared Gamma "
@@ -115,8 +135,14 @@ def build_predictions() -> list[Prediction]:
                          "Thermal emission efficiency"))
 
     # ── Morphological predictions ──────────────────────────────────────────
-    p.append(Prediction(26, "Morphology", "mean_radius_km", 2.78, 0.08, "km",
-                         "From Hanus et al. 2016 occultation data"))
+    p.append(Prediction(26, "Morphology", "mean_radius_km", PHAETHON_RADIUS_KM, 0.1, "km",
+                         "Hanus et al. 2016 (A&A 592, A34) thermophysical "
+                         "modelling of infrared data -- effective diameter "
+                         "5.1+/-0.2 km, i.e. radius 2.55+/-0.1 km. CORRECTED "
+                         "2026-09-15: was 2.78 km attributed to 'occultation "
+                         "data', which is neither the real Hanus et al. 2016 "
+                         "value nor its method (thermophysical, not "
+                         "occultation)."))
     p.append(Prediction(27, "Morphology", "shape_elongation_a_over_b", 1.09, 0.05, "dimensionless",
                          "Near-spherical: a/b ≈ 1.09 from lightcurve"))
     p.append(Prediction(28, "Morphology", "surface_roughness_rms_m", 15.0, 8.0, "m",
@@ -147,8 +173,17 @@ def build_predictions() -> list[Prediction]:
                          "Consistent with radar/visual Geminid observations"))
     p.append(Prediction(39, "Geminid", "stream_width_AU", 0.05, 0.02, "AU",
                          "Orbital diffusion from frustrated UTAC over 2000 yr"))
-    p.append(Prediction(40, "Geminid", "ejection_velocity_m_s", 1.2, 0.4, "m/s",
-                         "v_eject ≈ v_RIG_normalised at Phaethon surface gravity"))
+    p.append(Prediction(40, "Geminid", "ejection_velocity_m_s", 2.49, 0.4, "m/s",
+                         "v_esc = sqrt(2GM/r) via geminid_model.py's own "
+                         "GeminidModel.ejection_velocity_ms(), rho=1700 kg/m3, "
+                         "r=PHAETHON_RADIUS_KM. CORRECTED 2026-09-15: was "
+                         "hardcoded to 1.2 m/s, but that function was never "
+                         "actually called to produce this value -- running it "
+                         "with its own stated inputs gives ≈2.49-2.71 m/s (the "
+                         "range reflecting the concurrent radius correction, "
+                         "#26), not 1.2. The 1.2 value also does not match the "
+                         "function's own docstring formula for any of the "
+                         "quoted example radii."))
 
     # ── Information-geometric predictions ──────────────────────────────────
     p.append(Prediction(41, "InfoGeo", "Fisher_Rao_velocity_perihelion", 0.68, 0.12, "normalised",
@@ -163,10 +198,27 @@ def build_predictions() -> list[Prediction]:
                          "Γ_ratio between orbital domains should ≈ Φ^{1/3} (P38)"))
 
     # ── Mission timeline ───────────────────────────────────────────────────
-    p.append(Prediction(46, "Mission", "DESTINY_flyby_year", 2029.0, 1.0, "year",
-                         "Expected DESTINY+ Phaethon encounter year"))
+    p.append(Prediction(46, "Mission", "DESTINY_flyby_year", DESTINY_FLYBY_YEAR, 1.0, "year",
+                         "JAXA's current public mission schedule (H3 launch "
+                         "vehicle, JFY2028 launch / JFY2030 Phaethon flyby). "
+                         "CORRECTED 2026-09-15: was 2029, an earlier mission "
+                         "plan superseded by JAXA's own launch-vehicle-change "
+                         "schedule update."))
     p.append(Prediction(47, "Mission", "n_perihelion_passages_before_flyby", 4.0, 0.0, "count",
-                         "Perihelion passages between 2026 and expected flyby"))
+                         "Perihelion passages between 2026 and expected flyby. "
+                         "OPEN ISSUE (2026-09-15, not force-fixed): 4.0 does "
+                         "not follow from PHAETHON_PERIOD_YEARS (~1.43 yr) and "
+                         "either the corrected 2030 flyby year (~2.8 passages "
+                         "from 2026) or the previous 2029 value (~2.1 "
+                         "passages) under a simple period-division estimate. "
+                         "An exact count needs real perihelion epoch dates "
+                         "(e.g. from JPL Horizons), not available in this "
+                         "review -- left as-is rather than substituting an "
+                         "unverified replacement number. Still genuinely "
+                         "falsifiable once real epoch data or the actual "
+                         "flyby settle it -- unlike #1/#4, this is an "
+                         "open-derivation issue, not a structural "
+                         "non-independence one."))
 
     assert len(p) == 47, f"Expected 47 predictions, got {len(p)}"
     return p

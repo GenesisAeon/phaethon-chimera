@@ -3,14 +3,14 @@
 [![GenesisAeon Package](https://img.shields.io/badge/GenesisAeon-Package%2035-blueviolet)](https://doi.org/10.5281/zenodo.20807497)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20807497.svg)](https://doi.org/10.5281/zenodo.20807497)
 [![Whitepaper](https://img.shields.io/badge/Whitepaper-Zenodo-blue)](https://doi.org/10.5281/zenodo.19645351)
-[![DESTINY+](https://img.shields.io/badge/DESTINY%2B-Flyby%202029-orange)](https://www.isas.jaxa.jp/missions/spacecraft/destiny_plus/)
+[![DESTINY+](https://img.shields.io/badge/DESTINY%2B-Flyby%202030-orange)](https://www.isas.jaxa.jp/missions/spacecraft/destiny_plus/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 **GenesisAeon Package 35** — Phaethon-Asteroid: Frustrierte Systeme & Chimera-Zustände
 
 UTAC-Modellierung von **3200 Phaethon** als frustriertes Chimera-System.
-**47 quantitative Vorhersagen** für die DESTINY+ JAXA-Mission (Flyby 2029).
+**47 quantitative Vorhersagen** für die DESTINY+ JAXA-Mission (Flyby 2030).
 
 ---
 
@@ -83,9 +83,9 @@ uv run phaethon destiny-report --format table
 | 11 | Emissionswahrscheinlichkeit/Orbit | 0.23 ± 0.08 | — | Ja |
 | 16 | SOC τ-Exponent | 1.3 ± 0.1 | — | Ja |
 | 36 | Geminid ZHR | 120 ± 20 | /hr | Ja |
-| 46 | DESTINY+ Flyby | 2029 ± 1 | Jahr | Ja |
+| 46 | DESTINY+ Flyby | 2030 ± 1 | Jahr | Ja |
 
-Die meisten Vorhersagen sind **vor** dem DESTINY+ Flyby (2029) publiziert
+Die meisten Vorhersagen sind **vor** dem DESTINY+ Flyby (2030) publiziert
 → echt falsifizierbar. **Ausnahme (2026-09-15, Ehrlichkeits-Review):**
 Vorhersage #1 (Γ_phaethon) hat keine zitierte physikalische Herleitung —
 der Wert wurde laut ursprünglichem Code-Kommentar gewählt, um zwischen
@@ -173,7 +173,25 @@ GitHub Release, once Zenodo–GitHub integration is enabled for this repo.
 - **P36** (sa-sv-duality): S_A/S_V-Entropiedualität der Phaethon-Trajektorie
 - **P38** (phi-scaling): Φ^(1/3) ≈ 1.174 Skalierung zwischen Orbitaldynamik-Domänen
 
-**Zeitkritisch: DESTINY+ Flyby 2029 — alle Vorhersagen sind vor dem Flyby publiziert.**
+**Zeitkritisch: DESTINY+ Flyby 2030 — alle Vorhersagen sind vor dem Flyby publiziert.**
+
+**Ehrlichkeits-Nachtrag (2026-09-15, DESTINY+-Vorhersagen-Audit):**
+Bei einer stichprobenartigen Prüfung der auf reale externe Quellen
+gestützten Vorhersagen (Hanus et al. 2016, JAXA-Missionsplan, Geminiden-
+Literatur, sowie der paketinternen Physik-Funktionen) wurden drei echte,
+unabhängig verifizierte Fehler gefunden und korrigiert: #26 (Radius:
+falsche Quellenangabe UND falscher Wert — Hanus et al. 2016 lieferte
+5,1±0,2 km *Durchmesser* aus Thermophysik-Modellierung, nicht 2,78 km
+Radius aus Okkultationsdaten), #40 (Auswurfgeschwindigkeit: die eigene
+`ejection_velocity_ms()`-Funktion des Pakets wurde nie tatsächlich
+aufgerufen, um den Wert zu erzeugen — mit den eigenen Parametern ergibt
+sie ≈2,49 m/s, nicht 1,2 m/s), #46 (Flyby-Jahr: durch den JAXA-eigenen
+Trägerraketenwechsel auf H3 auf JFY2030 verschoben, war noch auf dem
+älteren 2029-Planungsstand). #47 (Anzahl Perihel-Durchgänge) hat eine
+verbleibende, dokumentierte Rechen-Inkonsistenz, die NICHT
+zwangskorrigiert wurde — eine echte Neuberechnung braucht präzise
+Perihel-Epochendaten (z.B. von JPL Horizons), die hier nicht vorlagen.
+Details: `destiny_predictions.py`, `FOLLOWUP_TICKETS.md`.
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "title": "phaethon-chimera: Frustrated UTAC Systems & Chimera States (GenesisAeon Package 35)",
-  "description": "GenesisAeon Package 35 — UTAC modelling of asteroid 3200 Phaethon as a frustrated chimera system. Implements: FrustratedUTAC ODE (dH/dt = r·H·(1-H/K)·tanh(σΓ) + A·cos(ω_p·t)), Kuramoto-order-parameter chimera detector, SOC avalanche statistics (τ ≈ 1.3), stochastic dust emission model (P_emit ≈ 0.23 per orbit), and 47 quantitative predictions for the DESTINY+ JAXA mission (flyby 2029), 45 of which are independently falsifiable against flyby data. CREP coupling Γ_phaethon ≈ 0.165 has no independent physical derivation (chosen to sit between Amazon 0.116 and AMOC 0.251 in the shared Gamma ordering) -- this and one directly-derived quantity are marked non-independent in the prediction set (see destiny_predictions.py). Connects to P31 (v_RIG), P32 (β-clustering), P36 (S_A/S_V duality), P38 (Φ^{1/3} scaling).",
-  "version": "1.0.2",
+  "description": "GenesisAeon Package 35 — UTAC modelling of asteroid 3200 Phaethon as a frustrated chimera system. Implements: FrustratedUTAC ODE (dH/dt = r·H·(1-H/K)·tanh(σΓ) + A·cos(ω_p·t)), Kuramoto-order-parameter chimera detector, SOC avalanche statistics (τ ≈ 1.3), stochastic dust emission model (P_emit ≈ 0.23 per orbit), and 47 quantitative predictions for the DESTINY+ JAXA mission (flyby 2030), 45 of which are independently falsifiable against flyby data. CREP coupling Γ_phaethon ≈ 0.165 has no independent physical derivation (chosen to sit between Amazon 0.116 and AMOC 0.251 in the shared Gamma ordering) -- this and one directly-derived quantity are marked non-independent in the prediction set (see destiny_predictions.py). Connects to P31 (v_RIG), P32 (β-clustering), P36 (S_A/S_V duality), P38 (Φ^{1/3} scaling).",
+  "version": "1.0.3",
   "license": "MIT",
   "upload_type": "software",
   "creators": [

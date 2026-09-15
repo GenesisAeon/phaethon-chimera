@@ -36,7 +36,13 @@ PHAETHON_PERIHELION_AU: float = 0.1397        # Extremely close to Sun
 PHAETHON_APHELION_AU: float = 2.403
 PHAETHON_ECCENTRICITY: float = 0.8898
 PHAETHON_INCLINATION_DEG: float = 22.26
-PHAETHON_RADIUS_KM: float = 2.78             # Mean radius (Hanus et al.)
+# CORRECTED (2026-09-15, DESTINY+ predictions audit): the real Hanus et al.
+# 2016 (A&A 592, A34) result is an effective DIAMETER of 5.1+/-0.2 km from
+# thermophysical modelling of infrared data -- NOT an occultation
+# measurement, and NOT a radius of 2.78 km. Radius = diameter/2 = 2.55 km.
+# See destiny_predictions.py Prediction #26 for the corresponding fix and
+# D:\mandala\crep-utac-afet-formalism\FOLLOWUP_TICKETS.md for the finding.
+PHAETHON_RADIUS_KM: float = 2.55             # Mean radius (Hanus et al. 2016, A&A 592 A34)
 
 # UTAC default parameters for Phaethon
 UTAC_R_PHAETHON: float = 0.18    # Growth rate (moderate)
@@ -58,7 +64,14 @@ CHIMERA_ALTITUDE_KM: float = 2.3    # Transition altitude from surface
 EMISSION_PROBABILITY: float = 0.23
 
 # DESTINY+ mission timeline
-DESTINY_FLYBY_YEAR: int = 2029
+# CORRECTED (2026-09-15, DESTINY+ predictions audit): JAXA's own current
+# schedule (see https://en.wikipedia.org/wiki/DESTINY%2B, launch-vehicle
+# change from Epsilon S to H3) delayed launch to JFY2028 and the Phaethon
+# flyby to JFY2030 -- this was 2029 in an earlier mission plan. See
+# destiny_predictions.py Prediction #46 and README.md/.zenodo.json (all
+# updated) for the corresponding fixes, and FOLLOWUP_TICKETS.md for the
+# full finding.
+DESTINY_FLYBY_YEAR: int = 2030
 
 # Package metadata
 PACKAGE_NUMBER: int = 35
