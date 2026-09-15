@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-09-15
+
+### Revised (Prediction #47, real orbital data)
+- The 1.0.3 audit flagged Prediction #47 (perihelion passages before
+  flyby, value 4.0) as inconsistent with a naive period-division
+  estimate (~2.8 passages). Pulled real orbital elements from JPL SBDB
+  (tp=JD 2461285.616438 TDB, period=523.6665665 d, solution 2026-06-25):
+  actual perihelion passages fall on 2026-09-02, 2028-02-07, 2029-07-15,
+  and 2030-12-21 -- not evenly spaced across calendar years the way a
+  period-division estimate assumes. `4.0` IS consistent with real data
+  if the JFY2030 flyby (Apr 2030-Mar 2031) occurs on or after
+  2030-12-21; `3.0` would be correct if it occurs earlier in that
+  fiscal year. JAXA's public schedule states only "JFY2030" with no
+  month yet published, so this stays open -- narrowed from "unclear by
+  ~2" to "exactly 3 or 4, pending JAXA's flyby-month announcement," not
+  force-resolved either way.
+
 ## [1.0.3] - 2026-09-15
 
 ### Fixed (real, independently verified errors found during the DESTINY+

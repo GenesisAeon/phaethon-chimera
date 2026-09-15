@@ -19,7 +19,7 @@ from phaethon_chimera.orbital import PhaethonOrbit
 from phaethon_chimera.soc_phaethon import SOCPhaethon
 from phaethon_chimera.system import PhaethonChimera
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __package_number__ = 35
 __all__ = [
     "PhaethonChimera",
