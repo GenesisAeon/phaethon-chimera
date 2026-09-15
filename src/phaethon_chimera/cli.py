@@ -115,6 +115,8 @@ def _print_destiny_table(fmt: str = "table") -> None:
                 "value": p.value,
                 "uncertainty": p.uncertainty,
                 "unit": p.unit,
+                "method": p.method,
+                "falsifiable": p.falsifiable,
             }
             for p in DESTINY_PREDICTIONS
         ]
@@ -127,9 +129,17 @@ def _print_destiny_table(fmt: str = "table") -> None:
     table.add_column("Quantity", style="cyan")
     table.add_column("Value ± σ", style="green")
     table.add_column("Unit", style="yellow")
+    table.add_column("Falsifiable", style="red")
 
     for p in DESTINY_PREDICTIONS:
-        table.add_row(str(p.id), p.category, p.quantity, f"{p.value} ± {p.uncertainty}", p.unit)
+        table.add_row(
+            str(p.id),
+            p.category,
+            p.quantity,
+            f"{p.value} ± {p.uncertainty}",
+            p.unit,
+            "yes" if p.falsifiable else "no (see method)",
+        )
 
     console.print(table)
 

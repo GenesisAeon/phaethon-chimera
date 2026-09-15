@@ -75,17 +75,28 @@ uv run phaethon destiny-report --format table
 
 ## 47 DESTINY+ Vorhersagen (Auswahl)
 
-| # | Größe | Wert ± σ | Einheit |
-|---|-------|----------|---------|
-| 1 | Γ_phaethon | 0.165 ± 0.02 | — |
-| 6 | Chimera R (Perihel) | 0.50 ± 0.10 | — |
-| 7 | Chimera-Übergangsaltitude | 2.3 ± 0.4 | km |
-| 11 | Emissionswahrscheinlichkeit/Orbit | 0.23 ± 0.08 | — |
-| 16 | SOC τ-Exponent | 1.3 ± 0.1 | — |
-| 36 | Geminid ZHR | 120 ± 20 | /hr |
-| 46 | DESTINY+ Flyby | 2029 ± 1 | Jahr |
+| # | Größe | Wert ± σ | Einheit | Falsifizierbar |
+|---|-------|----------|---------|---|
+| 1 | Γ_phaethon | 0.165 ± 0.02 | — | **Nein** — keine unabhängige Herleitung, siehe Hinweis unten |
+| 6 | Chimera R (Perihel) | 0.50 ± 0.10 | — | Ja |
+| 7 | Chimera-Übergangsaltitude | 2.3 ± 0.4 | km | Ja |
+| 11 | Emissionswahrscheinlichkeit/Orbit | 0.23 ± 0.08 | — | Ja |
+| 16 | SOC τ-Exponent | 1.3 ± 0.1 | — | Ja |
+| 36 | Geminid ZHR | 120 ± 20 | /hr | Ja |
+| 46 | DESTINY+ Flyby | 2029 ± 1 | Jahr | Ja |
 
-Alle Vorhersagen sind **vor** dem DESTINY+ Flyby (2029) publiziert → falsifizierbar.
+Die meisten Vorhersagen sind **vor** dem DESTINY+ Flyby (2029) publiziert
+→ echt falsifizierbar. **Ausnahme (2026-09-15, Ehrlichkeits-Review):**
+Vorhersage #1 (Γ_phaethon) hat keine zitierte physikalische Herleitung —
+der Wert wurde laut ursprünglichem Code-Kommentar gewählt, um zwischen
+`GAMMA_AMAZON` (0,116) und `GAMMA_AMOC` (0,251) im geteilten
+Γ-Spektrum zu liegen, nicht aus einer gemessenen oder modellierten
+Eigenschaft von Phaethon abgeleitet. Vorhersage #4 (`H*`) wird direkt
+aus #1 und #3 berechnet und ist ebenfalls nicht unabhängig. Beide sind
+im Code jetzt als `falsifiable=False` markiert — siehe
+`constants.py`s `GAMMA_PHAETHON`-Docstring und
+`crep-utac-afet-formalism/FOLLOWUP_TICKETS.md` für die vollständige
+Herleitung.
 
 ## Repository-Struktur
 

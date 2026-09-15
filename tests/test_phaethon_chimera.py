@@ -178,6 +178,17 @@ def test_gamma_phaethon_prediction():
     assert abs(gamma_pred.value - GAMMA_PHAETHON) < 1e-6
 
 
+def test_non_independent_predictions_marked_unfalsifiable():
+    """2026-09-15 honesty fix: Gamma_phaethon (id 1, no independent
+    derivation) and UTAC_fixed_point_H_star (id 4, computed directly from
+    ids 1 and 3) are not independent, falsifiable DESTINY+ tests."""
+    by_id = {p.id: p for p in DESTINY_PREDICTIONS}
+    assert by_id[1].falsifiable is False
+    assert by_id[4].falsifiable is False
+    # Everything else stays falsifiable by default.
+    assert all(p.falsifiable for p in DESTINY_PREDICTIONS if p.id not in (1, 4))
+
+
 def test_chimera_altitude_prediction():
     pred = next(p for p in DESTINY_PREDICTIONS if "altitude" in p.quantity)
     assert abs(pred.value - 2.3) < 0.01

@@ -88,7 +88,7 @@ class FrustratedUTAC:
             t_end = n_orbits * self.period_days
 
         steps = int((t_end - t_start) / dt)
-        times = np.linspace(t_start, t_end, steps)
+        times = np.linspace(t_start, t_end, steps, dtype=np.float64)
         H = np.zeros(steps)
         H[0] = max(1e-6, H0)
 

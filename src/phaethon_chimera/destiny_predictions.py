@@ -37,14 +37,32 @@ def build_predictions() -> list[Prediction]:
     p: list[Prediction] = []
 
     # ── CREP / UTAC predictions ─────────────────────────────────────────────
+    # HONESTY NOTE (2026-09-15, ecosystem-wide Gamma-circularity review):
+    # predictions 1 and 4 are NOT independent, falsifiable quantities --
+    # GAMMA_PHAETHON (id 1) has no cited physical derivation (see its
+    # docstring in constants.py), and id 4's "method" computes H* directly
+    # FROM id 1 and id 3's values, so it cannot independently confirm or
+    # refute either. Marked falsifiable=False accordingly. Prediction 3's
+    # "Beta-to-Gamma bridge (P32)" citation traces to beta-clustering-utac's
+    # own asserted (not independently re-verified here) claim that
+    # sigma~=2.2 "emerges from the beta distribution" -- see
+    # FOLLOWUP_TICKETS.md for this as a separate, not-yet-audited finding.
+    # Predictions 5-47 were not individually re-audited in this pass.
     p.append(Prediction(1, "CREP", "Gamma_phaethon", GAMMA_PHAETHON, 0.02, "dimensionless",
-                         "UTAC fixed-point: H* = K·tanh(σΓ)"))
+                         "No independent derivation -- chosen to sit between "
+                         "GAMMA_AMAZON and GAMMA_AMOC in the shared Gamma "
+                         "ordering; not a measured or modelled property of "
+                         "Phaethon.", falsifiable=False))
     p.append(Prediction(2, "CREP", "UTAC_r_growth_rate", 0.18, 0.04, "1/orbit",
                          "MLE fit from ZTF photometry variability"))
     p.append(Prediction(3, "CREP", "UTAC_sigma_steepness", 2.2, 0.3, "dimensionless",
-                         "Beta-to-Gamma bridge (P32 CREP-beta-bridge)"))
+                         "Beta-to-Gamma bridge (P32 CREP-beta-bridge) -- "
+                         "traces to beta-clustering-utac's own claim, not "
+                         "independently re-verified here"))
     p.append(Prediction(4, "CREP", "UTAC_fixed_point_H_star", 0.286, 0.03, "normalised",
-                         "H* = K·tanh(2.2 × 0.165)"))
+                         "Directly computed as H* = K·tanh(2.2 x 0.165) from "
+                         "predictions 1 and 3 -- not independent of them.",
+                         falsifiable=False))
     p.append(Prediction(5, "CREP", "CREP_C_coherence", 0.45, 0.10, "dimensionless",
                          "Context continuity near perihelion from STEREO data"))
 

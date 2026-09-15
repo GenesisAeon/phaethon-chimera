@@ -52,8 +52,8 @@ class PhaethonChimera:
         self._soc = SOCPhaethon()
         self._geminid = GeminidModel()
 
-        self._times: np.ndarray | None = None
-        self._H: np.ndarray | None = None
+        self._times: np.ndarray[Any, Any] | None = None
+        self._H: np.ndarray[Any, Any] | None = None
         self._run_results: dict[str, Any] = {}
 
     # ── Diamond interface ────────────────────────────────────────────────────

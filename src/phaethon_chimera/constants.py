@@ -12,7 +12,21 @@ SIGMA_PHI: float = 1 / 16                      # Frame Principle constant
 # CREP benchmark values (from entropy atlas)
 GAMMA_AMAZON: float = 0.116
 GAMMA_AMOC: float = 0.251
-GAMMA_PHAETHON: float = 0.165   # P35 target: between Amazon and AMOC
+# HONESTY NOTE (2026-09-15, ecosystem-wide Gamma-circularity review):
+# unlike GAMMA_AMAZON/GAMMA_AMOC (each a documented rescaling of a real,
+# cited domain ratio via a shared sigma=2.2 -- itself a separate honesty
+# finding, see those packages' own constants.py), GAMMA_PHAETHON has NO
+# cited physical derivation, no eta input, and no reference paper. Its
+# own original comment described it only as a "target: between Amazon
+# and AMOC" -- i.e. a value chosen to occupy a plausible slot in the
+# shared cross-package Gamma ordering, not derived from any measured or
+# modelled property of asteroid 3200 Phaethon. This value is presented
+# in README.md/destiny_predictions.py as DESTINY+ Prediction #1 (with an
+# uncertainty band, "falsifiable" against the 2029 flyby) -- see
+# destiny_predictions.py for the corresponding fix. See
+# D:\mandala\crep-utac-afet-formalism\FOLLOWUP_TICKETS.md for the full
+# finding.
+GAMMA_PHAETHON: float = 0.165
 GAMMA_SANDPILE: float = 0.296
 
 # Phaethon orbital parameters (3200 Phaethon, JPL Horizons)

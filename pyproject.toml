@@ -1,6 +1,6 @@
 [project]
 name = "phaethon-chimera"
-version = "1.0.1"
+version = "1.0.2"
 description = "Phaethon-Asteroid: Frustrierte Systeme & Chimera-Zustände — GenesisAeon Package 35"
 readme = "README.md"
 license = { text = "MIT" }
